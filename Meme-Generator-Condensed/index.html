@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
+    <title>Meme Generator</title>
+</head>
+
+
+<body onload="drawImage()">
+        
+    <header class="header">
+                <h1>Meme Generator</h1>
+            </header> 
+            
+
+    <section class="main">
+        <div class="canvas-container">
+            <canvas id="canvas" width="500" height="400">
+
+
+
+            </canvas>
+        </div>
+        <form class="form" onsubmit="return false">
+            <button class="more-memes">Click to Add More Memes</button>
+
+            <input type="text" name="top-text" id="top">
+             <button class="send" onclick="drawText()">apply text</button>
+
+            <div class="buttons">function buttons
+                    <button type="menu" menu="alignDirections" >Align Text
+                            <menu id="directions" type="context">
+
+                                    <menuitem label="Left" onclick="alignText()">
+                              
+                                    <menuitem label="right" onclick="alignText()">
+                              
+                                    <menuitem label="Center" onclick="alignText()">
+                            </menu>
+                    </button>
+            </div> 
+
+            <input type="text" name="bottom-text" id="bottom">
+            <button class="send" onclick="drawText()">apply text</button>
+
+            <div class="buttons">function buttons 
+                    <button type="menu" class="align" onclick="alignText()">Align Text</button>
+            </div>
+
+            <button class="clear" onclick="clearCanvas()">Clear Text</button>
+
+            <button class="save">Save/Download</button>
+        </form>
+
+    </section>
+
+    <script src="main.js"></script>
+</body>
+
+</html>

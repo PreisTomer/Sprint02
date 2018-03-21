@@ -1,0 +1,49 @@
+
+*{
+    box-sizing:border-box;
+}
+
+#myCanvas {
+    border: 1px solid;	
+}
+
+.canvas-container{
+    padding: 40px;
+}
+
+.header {
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    color:white;
+    line-height: 200px;
+    width:100%;
+    background-image: url("img/header-bg.jpg");
+   
+}
+
+h1{
+    margin:0;
+    font-size: 4rem;
+    text-shadow: 0 0 5px #FF0000, 0 0 7px #0000FF;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: 40px;
+}
+
+.main{
+    display:flex;
+    flex-direction: row;
+  justify-content: center;
+}
+
+.more-memes{
+    margin-bottom:20px;
+}
+
+.buttons{
+    margin-bottom: 20px;
+}
+
