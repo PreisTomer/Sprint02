@@ -11,45 +11,136 @@
 
 
 <body onload="drawImage()">
-        
+
     <header class="header">
-                <h1>Meme Generator</h1>
-            </header> 
-            
+        <h1>Meme Generator</h1>
+    </header>
+
 
     <section class="main">
         <div class="canvas-container">
             <canvas id="canvas" width="500" height="400">
 
-
-
             </canvas>
         </div>
+
+
+
+
         <form class="form" onsubmit="return false">
+
+            <!-- CHANGE MEME -->
+
             <button class="more-memes">Click to Add More Memes</button>
 
-            <input type="text" name="top-text" id="top">
-             <button class="send" onclick="drawText()">apply text</button>
 
-            <div class="buttons">function buttons
-                    <button type="menu" menu="alignDirections" >Align Text
-                            <menu id="directions" type="context">
+            <!-- ///////////////////////////TOP///////////////////////////// -->
 
-                                    <menuitem label="Left" onclick="alignText()">
-                              
-                                    <menuitem label="right" onclick="alignText()">
-                              
-                                    <menuitem label="Center" onclick="alignText()">
-                            </menu>
-                    </button>
-            </div> 
+            <!-- INPUT TEXT FIELD -->
+            <input type="text" name="top-text" id="top0">
+            <button class="send" onclick="drawText(0)">apply text</button>
 
+            <!-- ALIGN TEXT -->
+            <div class="buttons">Change Your Text:
+                <br>
+                <label class="label" for="align">Align Text:</label>
+                <select id="align-top" onchange="alignText()">
+                    <option value="right">Left</option>
+                    <option value="center">Center</option>
+                    <option value="left">Right</option>
+                </select>
+                <br>
+
+                <!-- FONT SIZE -->
+                <label class="label" for="font-size">Change Font Size:</label>
+                <input id="mm-size-top" type="number" name="size" value="50" min="1" max="999">
+                <button class="sizeBtn" onclick="changeFontSize()">apply size</button>
+
+                <!-- TEXT COLOR -->
+                <div class="color">
+                    <label class="label" for="font-size">Change Font Color:</label>
+                    <input type="color" id="color-top" name="color" value=#ffffff onchange="changeColor()">
+                </div>
+
+                <!-- TEXT SHADOW -->
+                
+                <label class="switch-top">Text Shadow:</label>
+                <div class="onoffswitch">
+                        <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" onclick=addShadow() id="switch-top">
+                    </div>
+
+                <!-- FONT CHANGE-->
+                <label class="label" for="align">Change Font:</label>
+                <select id="font-top" onchange="changeFont()" value="Impact">
+                    <option value="Ariel">Ariel</option>
+                    <option value="David">David</option>
+                    <option value="Segoe UI">Segoe UI</option>
+                    <option value="Impact">Impact</option>
+                </select>
+                <br>
+
+                <!-- MOVE UP/DOWN-->
+                <label class="label" for="moveTxt">Move Text Up/Down:</label>
+                <button class="top-down" onclick=move(0,5)>&darr;</button>
+                <button class="top-up" onclick=move(0,-5)>&uarr;</button>
+
+                <!-- ///////////////////////////BOTTOM///////////////////////////// -->
+            </div>
+            <!-- INPUT TEXT FIELD -->
             <input type="text" name="bottom-text" id="bottom">
             <button class="send" onclick="drawText()">apply text</button>
 
-            <div class="buttons">function buttons 
-                    <button type="menu" class="align" onclick="alignText()">Align Text</button>
-            </div>
+            <div class="buttons">Change Your Text:
+                <br>
+
+                <!-- ALIGN TEXT -->
+                <label class="label" for="align">Align Text:</label>
+                <select id="align-bottom" onchange="alignText()">
+                    <option value="right">Left</option>
+                    <option value="center">Center</option>
+                    <option value="left">Right</option>
+                </select>
+                <br>
+
+                <!-- FONT SIZE -->
+                <label class="label" for="font-size">Change Font Size:</label>
+                <input id="mm-size-bottom" type="number" name="size" value="50" min="1" max="999">
+                <button class="sizeBtn" onclick="changeFontSize()">apply size</button>
+
+
+                <!-- TEXT COLOR -->
+                <div class="color">
+                    <label class="label" for="font-size">Change Font Color:</label>
+                    <input type="color" id="color-bottom" name="color" value=#ffffff onchange="changeColor()">
+                </div>
+            
+
+                <!-- TEXT SHADOW -->
+                <!-- <label class="shadow" >Text Shadow:</label> -->
+                <label class="switch-bottom">Text Shadow:</label>
+                <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" onclick=addShadow() id="switch-bottom">
+                </div>
+
+                <!-- FONT CHANGE-->
+                <label class="label" for="align">Change Font:</label>
+                <select id="font-bottom" onchange="changeFont()" value="Impact">
+                    <option value="Ariel">Ariel</option>
+                    <option value="David">David</option>
+                    <option value="Segoe UI">Segoe UI</option>
+                    <option value="Impact">Impact</option>
+                </select>
+                <br>
+
+                <!-- MOVE UP/DOWN-->
+                <label class="label" for="moveTxt">Move Text Up/Down:</label>
+                <button class="bottom-down" onclick=move(1,5)>&darr;</button>
+                <button class="bottom-up" onclick=move(1,-5)>&uarr;</button><br><br>
+
+
+
+
+
 
             <button class="clear" onclick="clearCanvas()">Clear Text</button>
 
