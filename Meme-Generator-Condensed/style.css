@@ -43,13 +43,19 @@ h1{
     margin-bottom:20px;
 }
 
-.buttons{
-    margin-bottom: 20px;
-}
+
 
 .label{
     padding: 10px;
 }
 
+.outsideBtns{
+    display:flex;
+    flex-direction: column;
+}
+
+.controlPanel{
+    outline: 1px solid black;
+}
 
 /* TEXT SHADOW SWITCH */

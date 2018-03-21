@@ -30,8 +30,14 @@ var gMeme = {
             posY: 363
         }
     ]
-}
+};
 
+init();
+
+function init(){
+    drawImage();
+    renderControlPanel();
+}
 
 function drawImage() {
     var canvas = document.getElementById('canvas');
@@ -41,8 +47,8 @@ function drawImage() {
     img.src = gImgs[0].url;
 
     img.onload = function () {
+       
         context.drawImage(img, 0, 0, 500, 400);
-
         gMeme.txts.forEach(function (txt, i) {
 
             context.font = ` ${txt.size}px ${txt.font}`;
@@ -58,71 +64,134 @@ function drawImage() {
     };
 }
 
+function renderControlPanel(){
+    var strHtmls = '';
+    var strHtml = '';
+    gMeme.txts.forEach(function(txt, i){
+     
+      strHtml = `
+<div class="controlPanel">
+        <!-- INPUT TEXT FIELD -->
+        <input type="text" name="text${i}" id="top${i}" oninput= drawText(this.value,${i}) onsubmit="return false">
 
-function drawText() {
-    var inputTop = document.getElementById('top').value;
-    gMeme.txts[0].line = inputTop;
-    var inputBottom = document.getElementById('bottom').value;
-    gMeme.txts[1].line = inputBottom;
+        <!-- ALIGN TEXT -->
+        <div class="buttons">Change Your Text:
+            <br>
+            <label class="label" for="align">Align Text:</label>
+            <select id="align${i}" onchange="alignText(${i})">
+                <option value="right">Left</option>
+                <option value="center">Center</option>
+                <option value="left">Right</option>
+            </select>
+            <br>
+
+            <!-- FONT SIZE -->
+            <label class="label" for="font-size">Change Font Size:</label>
+            <input id="mm-size${i}" type="number" name="size" value="50" min="1" max="999">
+            <button class="sizeBtn" onclick="changeFontSize(${i})">apply size</button>
+
+            <!-- TEXT COLOR -->
+            <div class="color">
+                <label class="label${i}" for="font-size">Change Font Color:</label>
+                <input type="color" id="color${i}" name="color" value=#ffffff onchange="changeColor(${i})">
+            </div>
+
+            <!-- TEXT SHADOW -->
+            <label class="switch${i}">Text Shadow:</label>
+            <div class="onoffswitch">
+                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" onclick=addShadow(${i}) id="switch${i}">
+                </div>
+
+            <!-- FONT CHANGE-->
+            <label class="label" for="align">Change Font:</label>
+            <select id="font${i}" onchange="changeFont(${i})" value="Impact">
+                <option value="Ariel">Ariel</option>
+                <option value="David">David</option>
+                <option value="Segoe UI">Segoe UI</option>
+                <option value="Impact">Impact</option>
+            </select>
+            <br>
+
+            <!-- MOVE UP/DOWN-->
+            <label class="label" for="moveTxt">Move Text Up/Down:</label>
+            <button class="${i}down" onclick=move(${i},5)>&darr;</button>
+            <button class="${i}up" onclick=move(${i},-5)>&uarr;</button><br><br>
+
+            <button class="more-lines" onclick="removeLine(this,${i})">Click to Delete Line</button>
+</div>
+            `  
+strHtmls += strHtml;
+    })
+   var elControlPanel = document.querySelector(".form");
+   elControlPanel.innerHTML = strHtmls;
+
+}
+
+function addMoreLines(){
+    var newLine = {
+        line: '',
+        font: 'Impact',
+        size: 50,
+        align: 'center',
+        color: '#ffffff',
+        shadow: 'none',
+        posX: 250,
+        posY: 250
+    }
+gMeme.txts.push(newLine);
+init();
+}
+
+function removeLine(line, i){
+gMeme.txts.splice(line, i);
+init();
+}
+
+
+function drawText(txt, i) {
+    var input = txt
+    gMeme.txts[i].line = input;
     drawImage();
 }
 
-function alignText() {
-    var inputAlignTop = document.getElementById('align-top').value
-    var inputAlignBottom = document.getElementById('align-bottom').value
-    gMeme.txts[0].align = inputAlignTop;
-    gMeme.txts[1].align = inputAlignBottom;
+function alignText(i) {
+    var inputAlign = document.getElementById('align'+i).value
+    gMeme.txts[i].align = inputAlign;
     drawImage();
 }
 
-function changeFontSize() {
-    var inputSizeTop = document.getElementById('mm-size-top').value;
-    var inputSizeBottom = document.getElementById('mm-size-bottom').value;
-    gMeme.txts[0].size = inputSizeTop;
-    gMeme.txts[1].size = inputSizeBottom;
+function changeFontSize(i) {
+    var inputSize = document.getElementById('mm-size'+i).value;
+    gMeme.txts[i].size = inputSize;
     drawImage();
 }
 
-function changeColor() {
-    var colorTop = document.getElementById("color-top").value;
-    var colorBottom = document.getElementById("color-bottom").value;
-    gMeme.txts[0].color = colorTop;
-    gMeme.txts[1].color = colorBottom;
+function changeColor(i) {
+    var color = document.getElementById("color"+i).value;
+    gMeme.txts[i].color = color;
     drawImage();
 }
 
 
-function addShadow() {
-    var isTopChecked = document.getElementById("switch-top").checked;
-    var isBottomChecked = document.getElementById("switch-bottom").checked;
-
-    if (isTopChecked) {
-        gMeme.txts[0].shadow = 'black';
+function addShadow(i) {
+    var isChecked = document.getElementById("switch"+i).checked;
+    if (isChecked) {
+        gMeme.txts[i].shadow = 'black';
     } else {
-        gMeme.txts[0].shadow = 'rgba(0, 0, 0, 0)';
+        gMeme.txts[i].shadow = 'rgba(0, 0, 0, 0)';
     };
    drawImage();
-
-    if (isBottomChecked) {
-        gMeme.txts[1].shadow = 'black';
-    } else {
-        gMeme.txts[1].shadow = 'rgba(0, 0, 0, 0)';
-    };
-    drawImage();
 }
 
 
-function changeFont(){
-    var fontTop = document.getElementById("font-top").value;
-    var fontBottom = document.getElementById("font-bottom").value;
-    gMeme.txts[0].font = fontTop;
-    gMeme.txts[1].font = fontBottom;
+function changeFont(i){
+    var font = document.getElementById("font"+i).value;
+    gMeme.txts[i].font = font;
     drawImage();
 }
 
-function move(idx, jumpHeight){
-    gMeme.txts[idx].posY += jumpHeight;
-   
+function move(i, jumpHeight){
+    gMeme.txts[i].posY += jumpHeight;
     drawImage();
 }
 
