@@ -1,3 +1,5 @@
+/* =========FONTS==================== */
+
 @font-face{
 font-family: "myfont";
 src: url("fonts/Hc__.ttf")    
@@ -8,9 +10,22 @@ src: url("fonts/Hc__.ttf")
     src: url("fonts/BEACHTYP.TTF")    
     }
 
+@font-face {
+    font-family: 'FontAwesome';
+    src: url('fonts/fontawesome-webfont.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.fa {
+    font-family: 'FontAwesome';
+}
+
 *{
     box-sizing:border-box;
 }
+
+/* =================BODY===================== */
 
 #canvas {
     box-shadow:-1px 1px 5px 4px #f4511e;
@@ -225,6 +240,46 @@ a:active { color:white; }
         margin: 5px;
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
       }
+
+.submit-button{
+    display: inline-block;
+    border-radius: 20px;
+    background-color: #f4511e;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16px;
+    padding: 5px;
+    width: 90px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.submit-button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+
+  .submit-button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  .submit-button:hover span {
+    padding-right: 25px;
+  }
+  
+  .submit-button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
+
 /* =======================================INPUT FIELD TEXT================================== */
 
 .label-and-input{
@@ -246,7 +301,6 @@ a:active { color:white; }
   }
   input:focus 		{ outline:none; }
   
-  /* LABEL ======================================= */
    
   /* active state */
   #input:focus ~ label, #input:valid ~ label 		{
@@ -348,6 +402,184 @@ a:active { color:white; }
     border-radius: 10px;
   }
 
+  
+
+/* ================FOOTER=============== */
+
+.footer{
+    display:flex;
+    flex-flow: column wrap;
+}
+
+.svg{
+   margin-left:30px;
+   margin-top: 30px;
+   height:70%;
+    filter: drop-shadow( -5px 5px 7px #f4511e );
+}
+
+.footer-container{
+    width:100%;
+    height: 250px;
+    background-image: url("img/header-bg.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    box-shadow: 0 0 8px 8px  #f4511e inset;
+    display:flex;
+    flex-flow:row wrap;
+    justify-content: space-around;
+    
+
+}
+
+.rights{
+    font-family: 'latoRegular';
+    color:#a6a6a6;
+}
+
+
+.social-rights-container{
+    max-width: 200px;
+    width: 100%;
+    margin-top: 70px;
+    margin-right: 100px;
+    text-align: center;
+    font-family: 'myfont';
+    font-size: 13px;
+}
+
+/* -------SOCIAL------- */
+.social{
+    align-self: flex-start;
+}
+    
+    .social li{
+        width:40px;
+        height:40px;
+        background-color: #f4511e;
+        margin-left:20px;
+        transition: all .3s;
+        
+    }
+    .social li:first-child{
+        margin-left:0px;
+     
+        
+    }
+    .facebook:hover{
+        background-color: #516fad;
+        cursor: pointer;
+    }
+    
+    .twitter:hover {
+        background-color: rgb(29,202,255);
+        cursor: pointer;
+    }
+    
+    .behance:hover {
+        background-color: rgb(5, 62, 255);
+        cursor: pointer;
+    }
+    
+    .dribble:hover {
+        background-color:rgb(234, 76, 137);
+        cursor: pointer;
+    }
+    .social a {
+        z-index:10;
+        font-family: 'FontAwesome';
+        color:#ffffffb2;
+        line-height: 40px;
+        font-size: 1.3em;
+     
+    }
+    .social a:hover {
+        color:#ffffff;
+        cursor: pointer;
+    }
+    
+    
+    /*----Helpers----*/
+    
+    .clean-list {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+    }
+    
+    
+    /* -------FLEX------- */
+    
+    .flex {
+        display: flex;
+    }
+    .inline-flex {
+        display: inline-flex;
+    }
+    
+    .justify-center {
+        justify-content: center;
+    }
+    
+    .align-center {
+        align-items: center;
+    }
+    .align-right{
+        align-items: flex-end;
+    }
+    
+    .space-around {
+        justify-content: space-around;
+    }
+    .space-between {
+        justify-content: space-between;
+    }
+    
+    .flex-wrap {
+        flex-wrap: wrap;
+    }
+    
+    .flex-full {
+        flex: 1;
+    }
+    
+    .column {
+        flex-direction: column;
+    }
+    /* =================CONTACT ME======================== */
+
+#contact{
+    display:flex;
+    align-items: center;
+    flex-flow: column wrap;
+}
+
+#subject {
+    margin-left: 44px;
+}
+
+#email{
+    margin-left: 21px;
+}
+
+#message{
+    margin-bottom: 20px;
+}
+.submit{
+    margin-bottom: 5px;
+   
+}
+.contact-frame{
+    padding: 20px;
+    margin-bottom:20px;
+    display: flex;
+    align-items: center;
+    flex-flow: column wrap;
+    border: 1px solid #f4511e;
+    box-shadow: 0 8px 16px 0 #f4511e, 0 6px 20px 0 #f4511e;
+
+}
+    /* =================RESPONSIVENESS FOR MOBILE======================== */
 
   @media(max-width: 740px){
     .main {
@@ -375,7 +607,6 @@ a:active { color:white; }
        flex-flow: column wrap;
        max-width:110%;
        height: auto;
-        
     }
     
     h1{
@@ -394,4 +625,24 @@ a:active { color:white; }
     .group{
     display:flex;
     }
+    .svg{
+        margin-left:0;
+        height:70%;
+         filter: drop-shadow( -5px 5px 7px #f4511e );
+     }
+     .social-rights-container{
+        max-width: 200px;
+        width: 100%;
+        margin-right: 0;
+    }
+    .social li{
+        margin-left:0;
+    }
+    .footer-container{
+        width:100%;
+        height: 200px;
+       
+    }
+
+
 }

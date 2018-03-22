@@ -96,7 +96,7 @@ function renderControlPanel(){
             <!-- FONT SIZE -->
             <div class="label-and-select">
             <label class="label" for="font-size">Change Font Size:</label>
-            <input class=size-input id="mm-size${i}" type="number" name="size" value="50" min="1" max="999">
+            <input class=size-input id="mm-size${i}" type="number" name="size" value="50" min="1" max="999" onchange="changeFontSize(${i})">
             <div class="outsideBtns">
             <button class="outside-size" onclick="changeFontSize(${i})"><span>Apply</span></button>
             </div>
@@ -240,6 +240,14 @@ function clearCanvas() {
     }
 }
 
+
+$('.submit-button').click(function () {
+    var subject = $('#subject').val();
+    var email = $('#email').val();
+    var message = $('#message').val();
+    var url = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${subject}&body=${message}`;
+    window.location = url;
+});
 
 // ===============================CODE IN JS AND JQUERY TO MOVE TEXT ON CANVAS BY MOUSE==========================//
 // var canvas = document.getElementById('canvas');
