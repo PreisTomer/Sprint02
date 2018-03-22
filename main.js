@@ -136,7 +136,8 @@ function renderControlPanel(){
             <button class="move" onclick=move(${i},5)>&darr;</button>
             <button class="move" onclick=move(${i},-5)>&uarr;</button><br><br>
 
-            <button class="more-lines" onclick="removeLine(this,${i})">Click to Delete Line</button>
+            <!-- DELETE LINE-->
+            <button class="delete" onclick="removeLine(this,${i})">Click to Delete Line</button>
 </div>
             `  
 strHtmls += strHtml;
@@ -241,3 +242,67 @@ function clearCanvas() {
 
 
 // ===============================CODE IN JS AND JQUERY TO MOVE TEXT ON CANVAS BY MOUSE==========================//
+// var canvas = document.getElementById('canvas');
+// var ctx=canvas.getContext('2d');
+// var mouse={x:0,y:0} //make an object to hold mouse position
+// var scale = 2;
+
+// canvas.onmousemove=function(e){mouse={x:e.pageX-this.offsetLeft,y:e.pageY-this.offsetTop};} 
+// canvas.onmousemove=function(e){mouse={x:e.pageX-this.offsetLeft,y:e.pageY-this.offsetTop};} 
+
+// var img=new Image()
+
+// img.src="http://magickcanoe.com/moths/io-moth-1-large.jpg";
+
+// setInterval( render ,100)// set the animation into motion
+
+// var isDown = false;
+// var startCoords = [];
+// var last = [0, 0];
+
+// canvas.onmousedown = function(e) {
+//     isDown = true;
+
+//     startCoords = [
+//         e.offsetX - last[0],
+//         e.offsetY - last[1]
+//    ];
+// };
+
+// canvas.onmouseup   = function(e) {
+//     isDown = false;
+    
+//     last = [
+//         e.offsetX - startCoords[0], // set last coordinates
+//         e.offsetY - startCoords[1]
+//     ];
+// };
+
+// canvas.onmousemove = function(e)
+// {
+//     if(!isDown) return;
+    
+//     var x = e.offsetX;
+//     var y = e.offsetY;
+//     ctx.setTransform(1, 0, 0, 1,
+//                      x - startCoords[0], y - startCoords[1]);
+//     render();
+// }
+
+
+// function render(){
+// ctx.beginPath();
+// ctx.save();
+// ctx.setTransform(1,0,0,1,0,0);
+// ctx.fillRect(0,0,canvas.width,canvas.height) //fill the background. color is default black
+// ctx.restore();
+// ctx.save();
+// ctx.arc(mouse.x,mouse.y,250,0,6.28,false)//draw the circle
+// ctx.clip()//call the clip method so the next render is clipped in last path
+// ctx.drawImage(img,0,0,img.width*scale,img.height*scale) 
+
+// ctx.closePath()
+// ctx.restore()
+
+// }
+

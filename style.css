@@ -106,7 +106,24 @@ a:focused { color: white; }
 a:hover { color:white;}
 a:active { color:white; }
 
-/* -------BUTTONS--------- */
+/*===========================BUTTONS================================= */
+.delete{
+    display: inline-block;
+        border-radius: 20px;
+        background-color: #f4511e;
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 16px;
+        padding: 5px;
+        width: 100px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+        box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+
 
 .outsideBtns{
    display:flex;
@@ -208,7 +225,7 @@ a:active { color:white; }
         margin: 5px;
         box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
       }
-/* =======================================INPUT FIELD TEX================================== */
+/* =======================================INPUT FIELD TEXT================================== */
 
 .label-and-input{
     padding-top:10px;
@@ -338,15 +355,17 @@ a:active { color:white; }
         flex-flow: column wrap;
         align-content: center;
         align-items: center;
+        height: auto;
     }
     .form{
         padding-top: 0px;
         width: 100%;
         align-content: center;
     }
-    .canvas{
-    width:300px;
-    height: 400px;
+    #canvas{
+    width: 100%;
+    height:auto;
+    margin-bottom: 20px;
     }
     .controlPanel{
         width:100%;
@@ -354,7 +373,8 @@ a:active { color:white; }
     .canvas-container{
        display:flex;
        flex-flow: column wrap;
-       width:110%;
+       max-width:110%;
+       height: auto;
         
     }
     
