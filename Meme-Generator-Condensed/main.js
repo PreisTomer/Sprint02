@@ -13,21 +13,21 @@ var gMeme = {
             line: '',
             font: 'Impact',
             size: 50,
-            align: 'right',
+            align: 'center',
             color: '#ffffff',
             shadow: 'none',
-            posX: 250,
+            posX: 300,
             posY: 70
         },
         {
             line: '',
             font: 'Impact',
             size: 50,
-            align: 'right',
+            align: 'center',
             color: '#ffffff',
             shadow: 'none',
-            posX: 250,
-            posY: 363
+            posX: 300,
+            posY: 470
         }
     ]
 };
@@ -48,7 +48,7 @@ function drawImage() {
 
     img.onload = function () {
        
-        context.drawImage(img, 0, 0, 500, 400);
+        context.drawImage(img, 0, 0, 600, 500);
         gMeme.txts.forEach(function (txt, i) {
 
             context.font = ` ${txt.size}px ${txt.font}`;
@@ -72,50 +72,69 @@ function renderControlPanel(){
       strHtml = `
 <div class="controlPanel">
         <!-- INPUT TEXT FIELD -->
-        <input type="text" name="text${i}" id="top${i}" oninput= drawText(this.value,${i}) onsubmit="return false">
+        <h2>Line ${i +1}</h2>
+        <div class="group">
+        <input type="text" class="text-input" name="text${i}" id="input" oninput= drawText(this.value,${i}) placeholder="Type your text here!" >
+        <span class="highlight"></span>
+        <span class="bar"></span>
+        </div>
 
         <!-- ALIGN TEXT -->
-        <div class="buttons">Change Your Text:
-            <br>
+        <h3>Change Your Text:</h3>
+        <div class="label-and-select"> 
             <label class="label" for="align">Align Text:</label>
-            <select id="align${i}" onchange="alignText(${i})">
+            <div class="styled-select">
+            <select id="align${i}" onchange="alignText(${i})" value="center">
+            <option value="center">Center</option>
                 <option value="right">Left</option>
-                <option value="center">Center</option>
                 <option value="left">Right</option>
             </select>
+            </div>
+            </div>
             <br>
 
             <!-- FONT SIZE -->
+            <div class="label-and-select">
             <label class="label" for="font-size">Change Font Size:</label>
-            <input id="mm-size${i}" type="number" name="size" value="50" min="1" max="999">
-            <button class="sizeBtn" onclick="changeFontSize(${i})">apply size</button>
+            <input class=size-input id="mm-size${i}" type="number" name="size" value="50" min="1" max="999">
+            <div class="outsideBtns">
+            <button class="outside-size" onclick="changeFontSize(${i})"><span>Apply</span></button>
+            </div>
+            </div>
 
             <!-- TEXT COLOR -->
-            <div class="color">
-                <label class="label${i}" for="font-size">Change Font Color:</label>
-                <input type="color" id="color${i}" name="color" value=#ffffff onchange="changeColor(${i})">
+            <div class="label-and-input">
+                <label class="label" for="font-size">Change Font Color:</label>
+            <div class="color-container">
+                <input type="color" class="color" id="color${i}" name="color" value=#ffffff onchange="changeColor(${i})">
+            </div>
             </div>
 
             <!-- TEXT SHADOW -->
-            <label class="switch${i}">Text Shadow:</label>
-            <div class="onoffswitch">
-                    <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" onclick=addShadow(${i}) id="switch${i}">
-                </div>
+            <div class="label-and-input"> 
+            <label>Text Shadow:</label>
+            <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" onclick=addShadow(${i}) id="switch${i}">
+            </div>
+            <br>
 
             <!-- FONT CHANGE-->
+            <div class="label-and-select"> 
             <label class="label" for="align">Change Font:</label>
+            <div class="styled-select">
             <select id="font${i}" onchange="changeFont(${i})" value="Impact">
                 <option value="Ariel">Ariel</option>
                 <option value="David">David</option>
                 <option value="Segoe UI">Segoe UI</option>
                 <option value="Impact">Impact</option>
             </select>
+            </div>
+            </div>
             <br>
 
             <!-- MOVE UP/DOWN-->
             <label class="label" for="moveTxt">Move Text Up/Down:</label>
-            <button class="${i}down" onclick=move(${i},5)>&darr;</button>
-            <button class="${i}up" onclick=move(${i},-5)>&uarr;</button><br><br>
+            <button class="move" onclick=move(${i},5)>&darr;</button>
+            <button class="move" onclick=move(${i},-5)>&uarr;</button><br><br>
 
             <button class="more-lines" onclick="removeLine(this,${i})">Click to Delete Line</button>
 </div>
@@ -135,15 +154,15 @@ function addMoreLines(){
         align: 'center',
         color: '#ffffff',
         shadow: 'none',
-        posX: 250,
+        posX: 300,
         posY: 250
     }
 gMeme.txts.push(newLine);
 init();
 }
 
-function removeLine(line, i){
-gMeme.txts.splice(line, i);
+function removeLine(i){
+gMeme.txts.splice(i, 1);
 init();
 }
 
@@ -172,7 +191,6 @@ function changeColor(i) {
     drawImage();
 }
 
-
 function addShadow(i) {
     var isChecked = document.getElementById("switch"+i).checked;
     if (isChecked) {
@@ -182,7 +200,6 @@ function addShadow(i) {
     };
    drawImage();
 }
-
 
 function changeFont(i){
     var font = document.getElementById("font"+i).value;
@@ -194,6 +211,16 @@ function move(i, jumpHeight){
     gMeme.txts[i].posY += jumpHeight;
     drawImage();
 }
+
+function downloadCanvas(link, canvasId, filename) {
+    link.href = document.getElementById(canvasId).toDataURL();
+    link.download = filename;
+}
+
+document.getElementById('download').addEventListener('click', function() {
+    downloadCanvas(this, 'canvas', 'meme-generator-image.jpg');
+}, false);
+
 
 
 function clearCanvas() {
@@ -211,3 +238,6 @@ function clearCanvas() {
         ctx.drawImage(img, 0, 0, 500, 400);
     }
 }
+
+
+// ===============================CODE IN JS AND JQUERY TO MOVE TEXT ON CANVAS BY MOUSE==========================//

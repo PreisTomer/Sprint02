@@ -19,24 +19,21 @@
 
     <section class="main">
         <div class="canvas-container">
-            <canvas id="canvas" width="500" height="400">
-
-            </canvas>
+            <canvas id="canvas" width="600" height="500"></canvas>
+            <div class="outsideBtns">
+                    <button class="outside" onclick="addMoreLines()"><span>Add Line</span></button>
+                    <button class="outside" onclick="clearCanvas()"><span>Clear</span></button>
+                    <button class="outside"><a id="download"><span>Download</span></a></button>
+                </div>
         </div>
 
-            <!-- CHANGE MEME -->
-<div class="outsideBtns">
-            <button class="more-lines" onclick="addMoreLines()">Click to Add More Lines</button>
-            <button class="clear" onclick="clearCanvas()">Clear Text</button>
-            <button class="save">Save/Download</button>
-        </div>
         <form class="form" onsubmit="return false">
 
-            
+
         </form>
 
     </section>
-
+    <script src="lib/jquery-3.3.1.slim.js"></script>
     <script src="main.js"></script>
 </body>
 
