@@ -235,7 +235,7 @@ function clearCanvas() {
     img.src = gImgs[0].url;
 
     img.onload = function () {
-        ctx.drawImage(img, 0, 0, 500, 400);
+        ctx.drawImage(img, 0, 0, 600, 500);
     }
 }
 

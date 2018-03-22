@@ -341,22 +341,37 @@ a:active { color:white; }
     }
     .form{
         padding-top: 0px;
-        width: 70%;
+        width: 100%;
         align-content: center;
     }
+    .canvas{
+    width:300px;
+    height: 400px;
+    }
+    .controlPanel{
+        width:100%;
+    }
+    .canvas-container{
+       display:flex;
+       flex-flow: column wrap;
+       width:110%;
+        
+    }
     
-h1{
-    font-size: 3rem;
-}
-.canvas-container{
-    padding-bottom:10px;
-}
+    h1{
+    font-size: 2rem;
+    }   
 
-.bar{
+    .canvas-container{
+    padding-bottom:10px;
+    }
+
+    .bar{
     position: unset;
     width: 0;
-}
-.group{
+    }
+
+    .group{
     display:flex;
-}
+    }
 }
